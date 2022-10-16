@@ -1,0 +1,32 @@
+{
+  "name": "rick-morty",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "test": "turbo run test --parallel",
+    "cy:web": "cd apps/web && pnpm cy:run",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "vercel:env:pull": "pnpm --recursive vercel:env:pull"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.45",
+    "eslint-config-custom": "workspace:*",
+    "prettier": "latest",
+    "turbo": "^1.8.3"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": "^7.5.0"
+  },
+  "packageManager": "pnpm@7.5.0",
+  "dependencies": {
+    "axios": "^1.1.3"
+  }
+}

@@ -1,0 +1,80 @@
+@use  "../abstracts/mixins.module"
+@use "../abstracts/breakpoints.module"
+
+$sm: $breakpoint-small
+$md: $breakpoint-medium
+$lg: $breakpoint-large
+$xl: $breakpoint-extra-large
+
+h1
+  font-weight: 700
+  line-height: calc(80 / 64)
+  letter-spacing: 2
+  @include fontSize(40)
+  @include media($sm 52, $md 58, $lg 64)
+
+h2
+  font-weight: 700
+  line-height: calc(64 / 48)
+  @include fontSize(32)
+  @include media($sm 40, $md 44, $lg 48)
+
+h3
+  font-weight: 700
+  line-height: 1.5
+  @include fontSize(24)
+  @include media($sm 26, $md 30, $lg 32)
+
+h4
+  font-weight: 700
+  line-height: 1.5
+  @include fontSize(20)
+  @include media($sm 20, $md 24, $lg 24)
+
+h5
+  font-weight: 700
+  line-height: 1.5
+  @include fontSize(18)
+  @include media($sm 19, $md 20, $lg 20)
+
+h6
+  font-weight: 700
+  line-height: calc(28 / 18)
+  @include fontSize(17)
+  @include media($sm 18, $md 18, $lg 18)
+
+p,p[data-variant="body1"]
+    line-height: 1.5
+    @include fontSize(16)
+
+p[data-variant="body2"] 
+    line-height: calc(22 / 14)
+    @include fontSize(14)
+
+p[data-variant="subtitle1"] 
+    font-weight: 600
+    line-height: 1.5 
+    @include fontSize(16)
+
+p[data-variant="subtitle2"] 
+    font-weight: 600
+    line-height: calc(22 / 14)
+    @include fontSize(14)
+
+p[data-variant="body1"] 
+    line-height: 1.5 
+    @include fontSize(16)
+
+p[data-variant="body1"] 
+    line-height: 1.5 
+    @include fontSize(16)
+
+p[data-variant="caption"] 
+    line-height: 1.5 
+    @include fontSize(12)
+
+p[data-variant="overline"] 
+    font-weight: 700
+    line-height: 1.5 
+    text-transform: uppercase
+    @include fontSize(12)
