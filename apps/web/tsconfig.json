@@ -1,6 +1,6 @@
 {
   "extends": "tsconfig/nextjs.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "jest.config.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "jest.config.js", "pages/_error.js", "pages/api/[...nextauth].js", "pages/api/[...nextauth].js"],
   "exclude": ["node_modules"],
   "ts-node": {
     "compilerOptions": {

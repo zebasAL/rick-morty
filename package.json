@@ -10,16 +10,21 @@
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "test": "turbo run test",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "vercel:env:pull": "pnpm --recursive vercel:env:pull"
   },
   "devDependencies": {
+    "@types/node": "^17.0.45",
     "eslint-config-custom": "workspace:*",
     "prettier": "latest",
     "turbo": "latest"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16.0.0",
+    "pnpm": "^7.5.0"
   },
-  "dependencies": {},
-  "packageManager": "pnpm@7.13.4"
+  "packageManager": "pnpm@7.5.0",
+  "dependencies": {
+  }
 }
