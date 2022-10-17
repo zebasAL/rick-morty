@@ -1,5 +1,15 @@
 {
   "extends": "tsconfig/nextjs.json",
+  // "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "jest.config.js", "pages/_error.js", "pages/api/[...nextauth].js", "pages/api/[...nextauth].js"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"],
+      "@layout/*": ["components/layout/*"],
+      "@navigation/*": ["components/navigation/*"],
+      "@modals/*": ["components/modals/*"],
+    }
+  }
 }

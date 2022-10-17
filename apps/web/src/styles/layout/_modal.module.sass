@@ -1,0 +1,40 @@
+@keyframes growDown
+    0%
+        transform: scaleY(0)
+
+    100%
+        transform: scaleY(1)
+
+@keyframes growUp
+    0%
+        transform: scaleY(0)
+
+    100%
+        transform: scaleY(1)
+
+.dropdown_menu
+    position: absolute
+    top: 7%
+    right: 1%
+    display: block
+    width: 10rem
+    text-align: center
+    background-color: var(--color-container-secondary)
+    border-radius: 5%
+    border: 2px solid var( --color-nav-bg)
+
+.options-container
+    padding: 0
+    width: 100%
+
+.options-container li
+    display: block
+    text-align: center
+    margin: .25rem 0
+    &:hover
+        cursor: pointer
+        background-color: var(--color-nav-bg)
+
+.dropdown_menu-6
+    animation: growDown 150ms ease-in-out forwards
+    transform-origin: top center
