@@ -1,0 +1,11 @@
+.vercel
+
+# Sentry
+.sentryclirc
+
+# Environment
+.env
+
+.vercel
+
+*.css

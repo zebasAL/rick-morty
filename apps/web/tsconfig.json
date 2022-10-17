@@ -1,5 +1,11 @@
 {
   "extends": "tsconfig/nextjs.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "jest.config.js", "pages/_error.js", "pages/api/[...nextauth].js", "pages/api/[...nextauth].js"],
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+      "baseUrl": "."
+    }
+  }
 }
