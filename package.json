@@ -11,6 +11,7 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "test": "turbo run test --parallel",
+    "cy:web": "cd apps/web && pnpm cy:run",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "vercel:env:pull": "pnpm --recursive vercel:env:pull"
   },
