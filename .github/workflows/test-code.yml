@@ -73,4 +73,4 @@ jobs:
 
       - name: Run integration tests
           # start the server in the background
-        run: pnpm dev & pnpm cy:run
+        run: cd .\apps\web\ & pnpm dev & pnpm cy:run
