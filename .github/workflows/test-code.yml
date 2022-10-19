@@ -29,7 +29,7 @@ jobs:
           node-version: 16.x
 
       - name: Install pnpm
-        run: npx pnpm add -g pnpm@7.5.0
+        run: npx pnpm add -g
 
       - name: Install dependencies
         run: pnpm install 
