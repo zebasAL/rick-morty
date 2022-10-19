@@ -40,7 +40,7 @@ jobs:
         run: pnpm install 
         
       - name: Lints
-        run: npx eslint **/*.jsx
+        run: pnpm lint
 
   tests:
     needs: lint
