@@ -1,4 +1,4 @@
-name: Testing-check
+name: Testing-checks
 
 # Controls when the workflow will run
 on:
@@ -73,4 +73,4 @@ jobs:
 
       - name: Run integration tests
           # start the server in the background
-        run: pnpm start & pnpm cy:run
+        run: pnpm build & pnpm start & pnpm cy:run
