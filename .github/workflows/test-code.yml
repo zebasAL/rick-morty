@@ -21,15 +21,20 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Installs Node js
-        uses: actions/setup-node@v1
+      - name: Install Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 16
 
-      - name: Install pnpm
-        run: npx pnpm add -g
+      - uses: pnpm/action-setup@v2.0.1
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
 
       - name: Install dependencies
         run: pnpm install 
