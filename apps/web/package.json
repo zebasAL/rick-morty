@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watchAll",
+    "test": "jest",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "freePorts": "kill-port 3000",
