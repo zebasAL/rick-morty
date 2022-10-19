@@ -1,10 +1,19 @@
-import { Button } from "ui";
+// import { Button } from "ui";
 
-export default function Web() {
+const Web = () => {
   return (
     <div>
       <h1>Web</h1>
-      <Button />
+      <button
+        type="button"
+        onClick={() => {
+          throw new Error("Sentry Frontend Error");
+        }}
+      >
+        Throw error
+      </button>
     </div>
   );
 }
+
+export default Web;
