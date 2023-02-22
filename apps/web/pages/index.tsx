@@ -14,6 +14,6 @@ const Web = () => {
       </button>
     </div>
   );
-}
+};
 
 export default Web;

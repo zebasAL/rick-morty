@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-// import { getSamples, postSamples } = '../../utils/samples'
+// import { getSamples, postSamples } from '../../utils/samples';
 
 async function examaple(_req: NextApiRequest, res: NextApiResponse) {
   try {
