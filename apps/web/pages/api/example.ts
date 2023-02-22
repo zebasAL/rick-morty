@@ -1,5 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+<<<<<<< HEAD
+<<<<<<< HEAD
+// import { getSamples, postSamples } from '../../utils/samples';
+=======
 // import { getSamples, postSamples } = '../../utils/samples'
+>>>>>>> 84ec588 (rick-morty SDK sample added and Updated README.md)
+=======
+// import { getSamples, postSamples } = '../../utils/samples'
+>>>>>>> 60b5879 (rick-morty sdk added to lib with types & schemas)
 
 async function examaple(_req: NextApiRequest, res: NextApiResponse) {
   try {
