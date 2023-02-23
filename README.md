@@ -11,6 +11,9 @@ This monorepo is task for Gpac company
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
+## Schema validator
+- [zod](https://zod.dev)
+
 ## How to develop
 
 ### 1. Access and permissions
