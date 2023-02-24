@@ -1,15 +1,20 @@
-import { z } from "zod"
+import { z } from "zod";
 import type { AxiosRequestConfig, AxiosResponse } from "axios";
 import axios, { AxiosInstance } from "axios";
 import { inspect } from "util";
 // schemas and types
 import {
+  allCharactersSchema,
+  AllCharactersType,
+  allEpisodesSchema,
+  AllEpisodesType,
+  allLocationsSchema,
+  AllLocationsType,
   characterSchema,
-} from './schemas'
+} from "./schemas";
 
-import {
-  CharacterType,
-} from './schemas'
+import { CharacterType } from "./schemas";
+import { inputSchema } from "./schemas/inputs";
 
 class RMsdk {
   private static instance: RMsdk;
@@ -66,28 +71,47 @@ class RMsdk {
     return RMsdk.instance;
   }
 
-  public async getAllCharacters(): Promise<CharacterType> {
+  public async getAllCharacters(): Promise<AllCharactersType> {
     const url = `/character`;
-    const { data } = await this.req.get<CharacterType>(url)
+    const { data } = await this.req.get<AllCharactersType>(url);
 
-    return RMsdk.checkSchema(characterSchema, data);
+    return RMsdk.checkSchema(allCharactersSchema, data);
   }
 
-  public async getCharacterById(Ids: any): Promise<CharacterType> {
+  public async getCharacterById(Ids: Number): Promise<CharacterType> {
     const url = `/character`;
     const config: AxiosRequestConfig = {
       params: Ids,
     };
-    const { data } = await this.req.get<CharacterType>(url, config)
+    const { data } = await this.req.get<CharacterType>(url, config);
 
     return RMsdk.checkSchema(characterSchema, data);
   }
 
+  public async getAllEpisodes(): Promise<AllEpisodesType> {
+    const url = `/episode`;
+    const { data } = await this.req.get<AllEpisodesType>(url);
+
+    return RMsdk.checkSchema(allEpisodesSchema, data);
+  }
+
+  public async getAllLocations(): Promise<AllLocationsType> {
+    const url = `/location`;
+    const { data } = await this.req.get<AllLocationsType>(url);
+
+    return RMsdk.checkSchema(allLocationsSchema, data);
+  }
 }
+export const validateInput = (input: unknown) => {
+  const isValidData = inputSchema.parse(input);
+  return isValidData;
+};
 
 export const rmSDK = RMsdk.getInstance();
 
+export const multipleCharactersSchema = z.array(characterSchema);
 
+export type MultipleCharactersType = z.infer<typeof multipleCharactersSchema>;
 
 // axios way of use
 
@@ -102,7 +126,7 @@ export const rmSDK = RMsdk.getInstance();
 // })
 
 // 2._
-// this.req('https://example/api', { 
+// this.req('https://example/api', {
 //   url: 'v1'
 //   params: { code: apiCode },
 //   method: 'POST'
