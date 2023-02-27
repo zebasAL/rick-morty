@@ -5,44 +5,56 @@ import {
   AllCharactersType,
   AllEpisodesType,
   AllLocationsType,
+  CharacterType,
 } from "../lib/rick-morty/schemas";
 import { InputType } from "../lib/rick-morty/schemas/inputs";
 import { rmSDK, validateInput } from "../lib/rick-morty/sdk";
 
 const Test: NextPage = () => {
-  const [input, setInput] = useState<InputType>(1);
-  const [allCharacters, setAllCharacters] = useState<AllCharactersType>();
-  const [allEpisodes, setAllEpisodes] = useState<AllEpisodesType>();
-  const [allLocations, setAllLocations] = useState<AllLocationsType>();
-  const [characterById, setCharacterById] = useState<string | undefined>("");
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+  const [input, setInput] = useState<InputType>();
+  const [singleCharacterInfo, setSingleCharacterInfo] =
+    useState<CharacterType>();
+  const [characterById, setCharacterById] = useState<string>();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInput(event.target.valueAsNumber);
+    if (event.target.valueAsNumber > 0 && event.target.valueAsNumber <= 826) {
+      setIsDisabled(false);
+      setInput(event.target.valueAsNumber);
+    } else {
+      setCharacterById("SIN PERSONAJES");
+      setIsDisabled(true);
+    }
   };
 
   const searchInput = () => {
     validateInput(input);
-    if (input > 0 && input < 20) {
-      setCharacterById(allCharacters?.results?.[input].name);
-      return;
-    } else setCharacterById("No se encontraron personajes");
+    setCharacterById(singleCharacterInfo?.name);
   };
 
   useEffect(() => {
     (async () => {
-      const responseCharacters = await rmSDK.getAllCharacters();
-      setAllCharacters(responseCharacters);
+      const responseCharacters = await (
+        await fetch("/api/public/characters")
+      ).json();
       console.log("responseCharacters", responseCharacters);
 
       const responseEpisodes = await rmSDK.getAllEpisodes();
-      setAllEpisodes(responseEpisodes);
       console.log("responseEpisodes", responseEpisodes);
 
       const responseLocations = await rmSDK.getAllLocations();
-      setAllLocations(responseLocations);
       console.log("responseLocations", responseLocations);
     })();
   }, []);
+
+  useEffect(() => {
+    if (!input || input > 826) return;
+    (async () => {
+      const responseSingleCharacter = await rmSDK.getCharacterById(input);
+      setSingleCharacterInfo(responseSingleCharacter);
+      console.log("responseSingleCharacter", responseSingleCharacter);
+    })();
+  }, [input]);
 
   return (
     <>
@@ -58,16 +70,12 @@ const Test: NextPage = () => {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
 
-      <p>BUSCA TU PERSONAJE POR ID 1-19</p>
+      <p>BUSCA TU PERSONAJE POR ID 1-826</p>
       <div>
-        <input
-          type="number"
-          min="1"
-          max="19"
-          value={input}
-          onChange={handleChange}
-        />
-        <button onClick={searchInput}>Buscar</button>
+        <input type="number" onChange={handleChange} />
+        <button disabled={isDisabled} onClick={searchInput}>
+          Buscar
+        </button>
       </div>
       <div>
         <text>

@@ -78,12 +78,12 @@ class RMsdk {
     return RMsdk.checkSchema(allCharactersSchema, data);
   }
 
-  public async getCharacterById(Ids: Number): Promise<CharacterType> {
-    const url = `/character`;
+  public async getCharacterById(Id: Number): Promise<CharacterType> {
+    const url = `/character/${Id}`;
     const config: AxiosRequestConfig = {
-      params: Ids,
+      params: Id,
     };
-    const { data } = await this.req.get<CharacterType>(url, config);
+    const { data } = await this.req.get<CharacterType>(url, config.params);
 
     return RMsdk.checkSchema(characterSchema, data);
   }
