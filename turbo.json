@@ -2,15 +2,18 @@
   "$schema": "https://turborepo.org/schema.json",
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "env": ["VERCEL_ENV"],
-      "outputs": ["dist/**", ".next/**"]
+      "dependsOn": ["$VERCEL_ENV", "^build"],
+      "outputs": ["dist/", ".next/"]
     },
     "lint": {
       "outputs": []
     },
     "dev": {
       "cache": false
+    },
+    "web#build": { 
+      "dependsOn": ["$VERCEL_ENV", "^build", "generate"],
+      "outputs": [".next/**"]
     },
     "test": {
       "cache": false
