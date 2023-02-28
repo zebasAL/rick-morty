@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import Image from "next/Image";
+import Image from 'next/image'
 import * as Sentry from "@sentry/nextjs";
 
 interface Props {
