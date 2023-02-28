@@ -12,7 +12,7 @@
       "cache": false
     },
     "web#build": { 
-      "dependsOn": ["$VERCEL_ENV", "^build", "generate"],
+      "dependsOn": ["$VERCEL_ENV", "^build"],
       "outputs": [".next/**"]
     },
     "test": {
