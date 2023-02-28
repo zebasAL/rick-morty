@@ -20,7 +20,6 @@ importers:
   apps/web:
     specifiers:
       '@babel/core': ^7.0.0
-      '@emotion/cache': ^11.10.3
       '@emotion/react': ^11.10.4
       '@emotion/server': ^11.10.0
       '@emotion/styled': ^11.10.4
