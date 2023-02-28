@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import Image from "next/Image";
 import * as Sentry from "@sentry/nextjs";
 
 interface Props {
@@ -34,12 +35,12 @@ export class ErrorBoundary extends React.Component<Props, State> {
       // render custom fallback UI
       return (
         <div style={{ textAlign: "center", margin: "20px 10px" }}>
-          <img
+          <Image
             style={{ maxHeight: "200px", width: "100%", objectFit: "contain" }}
             alt="error" src="https://metiormedia.s3.us-east-1.amazonaws.com/assets/errorImage.png"
           />
           <h2>Woops!, An Error Occurred</h2>
-          <p> The application detected an error, and it"s been reported to the application development team. You can try refreshing the page.</p>
+          <p> The application detected an error, and it&quots been reported to the application development team. You can try refreshing the page.</p>
           <p>If the error keeps occurring, please file a bug report with the following details, and include any steps to reproduce the issue.</p>    
         </div>
       );
