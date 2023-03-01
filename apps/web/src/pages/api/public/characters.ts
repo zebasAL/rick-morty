@@ -13,7 +13,7 @@ async function characters(_req: NextApiRequest, res: NextApiResponse) {
         // const { code, body } = await postSamples()
         // res.status(code).json(body);
 
-        res.status(200).json("OK");
+        res.status(201).json("OK");
         break;
 
       default:
