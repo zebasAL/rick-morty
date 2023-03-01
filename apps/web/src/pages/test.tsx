@@ -1,17 +1,21 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 // import { rmSDK, validateInput } from "../lib/rick-morty/sdk";
-
 import { api } from '../utils/api'
 
-
 const Test: NextPage = () => {
+  const [response, setResponse] = useState<any>()
 
   const fetchData = async () => {
-    return await fetch(api.public.characters, { method: 'POST' })
+    if (response) return
+    const res = await fetch(api.public.characters, { method: 'GET' })
+      .then((res) => res)
+      .then((res) => res.json())
+    setResponse(res)
   };
 
-  console.log('fetch', fetchData())
+  fetchData()
 
   return (
     <>
@@ -21,9 +25,11 @@ const Test: NextPage = () => {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <pre>
-        {JSON.stringify('TEXT')}
-      </pre>
+      {response && (
+        <pre>
+          {JSON.stringify(response, null, 2)}
+        </pre>
+      )}
     </>
   );
 };
