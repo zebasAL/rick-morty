@@ -1,22 +1,18 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
-// import { rmSDK, validateInput } from "../lib/rick-morty/sdk";
-import { api } from '../utils/api'
+import { fetchRmCharacters, rmCharactersUrl } from "../hooks";
+import useSWR from "swr";
+import { AllCharactersType } from "../lib/rick-morty/schemas";
 
 const Test: NextPage = () => {
-  const [response, setResponse] = useState<any>()
+  const {
+    data: characters,
+    error,
+    isLoading,
+  } = useSWR<AllCharactersType>(rmCharactersUrl, fetchRmCharacters);
 
-  const fetchData = async () => {
-    if (response) return
-    const res = await fetch(api.public.characters, { method: 'GET' })
-      .then((res) => res)
-      .then((res) => res.json())
-    setResponse(res)
-  };
-
-  fetchData()
-
+  if (error) return <div>failed to load</div>;
+  if (isLoading) return <div>loading...</div>;
   return (
     <>
       <Head>
@@ -25,11 +21,12 @@ const Test: NextPage = () => {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      {response && (
-        <pre>
-          {JSON.stringify(response, null, 2)}
-        </pre>
-      )}
+      {characters && <pre>{JSON.stringify(characters, null, 2)}</pre>}
+      <div>
+        {characters?.results.map((character) => (
+          <div key={character.id}>{character.name}</div>
+        ))}
+      </div>
     </>
   );
 };

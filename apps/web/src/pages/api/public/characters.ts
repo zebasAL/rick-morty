@@ -10,7 +10,7 @@ async function characters(_req: NextApiRequest, res: NextApiResponse) {
         break;
 
       default:
-        res.setHeader('Allow', ['GET']);
+        res.setHeader("Allow", ["GET"]);
         res.status(405).end(`Method ${_req.method} Not Allowed`);
         break;
     }
