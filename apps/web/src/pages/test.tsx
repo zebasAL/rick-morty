@@ -19,15 +19,10 @@ const Test: NextPage = () => {
         <title>Test</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?   
-          family=Montserrat:wght@200;400&display=swap"
-          rel="stylesheet"
-        />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <pre>
-        {JSON.stringify()}
+        {JSON.stringify('TEXT')}
       </pre>
     </>
   );
