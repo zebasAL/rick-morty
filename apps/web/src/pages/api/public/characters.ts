@@ -9,15 +9,9 @@ async function characters(_req: NextApiRequest, res: NextApiResponse) {
         res.status(200).json(body);
         break;
 
-      case "POST":
-        // const { code, body } = await postSamples()
-        // res.status(code).json(body);
-
-        res.status(200).json("OK");
-        break;
-
       default:
-        res.status(404).json({ error: "This endpoint is not coded yet" });
+        res.setHeader('Allow', ['GET']);
+        res.status(405).end(`Method ${_req.method} Not Allowed`);
         break;
     }
   } catch (error) {

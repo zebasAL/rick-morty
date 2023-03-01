@@ -10,7 +10,8 @@
         ".next/"
       ],
       "env": [
-        "VERCEL_ENV"
+        "VERCEL_ENV",
+        "VERCEL_URL"
       ]
     },
     "lint": {
@@ -27,7 +28,8 @@
         ".next/**"
       ],
       "env": [
-        "VERCEL_ENV"
+        "VERCEL_ENV",
+        "VERCEL_URL"
       ]
     },
     "test": {

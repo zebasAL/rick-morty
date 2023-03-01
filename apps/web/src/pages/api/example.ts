@@ -1,7 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 // import { getSamples, postSamples } = '../../utils/samples'
 
-async function examaple(_req: NextApiRequest, res: NextApiResponse) {
+type Data = string | Object
+
+type Body = string
+
+async function examaple(
+  _req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
+  const body: Body = _req.body
+
+  // res.redirect(307, '/')
+
   try {
     switch (_req.method) {
       case 'GET':
@@ -19,7 +30,9 @@ async function examaple(_req: NextApiRequest, res: NextApiResponse) {
         break;
     
       default:
-        res.status(404).json({ error: 'This endpoint is not coded yet' });
+        // res.status(404).json({ error: 'This endpoint is not coded yet' });
+        res.setHeader('Allow', ['GET', 'POST']);
+        res.status(405).end(`Method ${_req.method} Not Allowed`);
         break;
     }
   } catch(error) {
