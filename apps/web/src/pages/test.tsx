@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { fetchRmCharacters, rmCharactersUrl } from "../hooks";
+import { fetchRmCharacters, fetchRmEpisodes, fetchRmLocations, rmCharactersUrl, rmEpisodesUrl, rmLocationsUrl } from "../hooks";
 import useSWR from "swr";
-import { AllCharactersType } from "../lib/rick-morty/schemas";
+import { AllCharactersType, AllLocationsType, AllEpisodesType } from "../lib/rick-morty/schemas";
 
 const Test: NextPage = () => {
   const {
@@ -21,12 +21,18 @@ const Test: NextPage = () => {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      {characters && <pre>{JSON.stringify(characters, null, 2)}</pre>}
-      <div>
+      <table>
+        <th>Name</th>
+        <th>Id</th>
+        <th>Location</th>
         {characters?.results.map((character) => (
-          <div key={character.id}>{character.name}</div>
+          <tr key={character.id}>
+            {character.name}
+        <td>{character.id}</td>
+        <td>{character.location?.name}</td>
+          </tr>
         ))}
-      </div>
+      </table>
     </>
   );
 };
