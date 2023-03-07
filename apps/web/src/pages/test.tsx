@@ -1,22 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import {
-  fetchRmCharacters,
-  fetchRmEpisodes,
-  fetchRmLocations,
-  getKey,
-  rmCharactersUrl,
-  rmEpisodesUrl,
-  rmLocationsUrl,
-} from "../hooks";
+import { fetchRmCharacters, getKey, rmCharactersUrl } from "../hooks";
 import useSWR from "swr";
 import useSWRInfinite from "swr/infinite";
-import {
-  AllCharactersType,
-  AllLocationsType,
-  AllEpisodesType,
-  CharacterType,
-} from "../lib/rick-morty/schemas";
+import { AllCharactersType } from "../lib/rick-morty/schemas";
+import Layout from "../components/Layout";
 
 const Test: NextPage = () => {
   const {
@@ -31,18 +19,10 @@ const Test: NextPage = () => {
     setSize,
   } = useSWRInfinite(getKey, fetchRmCharacters);
 
-  const moreCharacters: AllCharactersType = nextFetch?.[0];
-
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
   return (
     <>
-      <Head>
-        <title>Test</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </Head>
       <table>
         <thead>
           <tr>
@@ -61,15 +41,9 @@ const Test: NextPage = () => {
           ))}
         </tbody>
       </table>
-
-      {moreCharacters?.results.map((incomingFetch: CharacterType) => {
-        // `nextFetch?` is an array of each page's API response.
-        return <div key={incomingFetch.id}>{incomingFetch.name}</div>;
-      })}
       <button
         onClick={() => {
           setSize(size + 1);
-          console.log("myNextFetch", nextFetch?.[0].results);
         }}
       >
         Load More

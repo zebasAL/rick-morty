@@ -1,19 +1,9 @@
-// import { Button } from "ui";
+import Layout from "../components/Layout";
 
-const Web = () => {
+export default function Home() {
   return (
-    <div>
-      <h1>Web</h1>
-      <button
-        type="button"
-        onClick={() => {
-          throw new Error("Sentry Frontend Error");
-        }}
-      >
-        Throw error
-      </button>
-    </div>
+    <Layout>
+      <h1>Hello home</h1>
+    </Layout>
   );
-};
-
-export default Web;
+}

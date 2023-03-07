@@ -7,6 +7,8 @@ async function characters(_req: NextApiRequest, res: NextApiResponse) {
       case "GET":
         const body = await rmSDK.getAllCharacters();
         res.status(200).json(body);
+        console.log("this body", body);
+
         break;
 
       default:
