@@ -1,7 +1,7 @@
 import { AllCharactersType, CharacterType } from "./lib/rick-morty/schemas";
 import { api } from "./utils/api";
 
-export const rmCharactersUrl = "https://rickandmortyapi.com/api/character";
+export const rmCharactersUrl = api.public.characters;
 export const rmLocationsUrl = api.public.locations;
 export const rmEpisodesUrl = api.public.episodes;
 
@@ -16,17 +16,4 @@ export const fetchRmLocations = async (url: string) => {
 
 export const fetchRmEpisodes = async (url: string) => {
   return fetch(url).then((r) => r.json());
-};
-
-export const fetchMoreCharacters = async (url: string) => {
-  return fetch(url).then((r) => r.json());
-};
-
-export const getKey = (
-  pageIndex: number,
-  previousPageData: string | CharacterType[]
-) => {
-  if (previousPageData && !previousPageData.length) return null;
-  if (pageIndex === 0) return rmCharactersUrl;
-  return `${rmCharactersUrl}?page=${pageIndex}`;
 };

@@ -1,10 +1,19 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { fetchRmCharacters, getKey, rmCharactersUrl } from "../hooks";
+import {
+  fetchRmCharacters,
+  fetchRmEpisodes,
+  fetchRmLocations,
+  rmCharactersUrl,
+  rmEpisodesUrl,
+  rmLocationsUrl,
+} from "../hooks";
 import useSWR from "swr";
-import useSWRInfinite from "swr/infinite";
-import { AllCharactersType } from "../lib/rick-morty/schemas";
-import Layout from "../components/Layout";
+import {
+  AllCharactersType,
+  AllLocationsType,
+  AllEpisodesType,
+} from "../lib/rick-morty/schemas";
 
 const Test: NextPage = () => {
   const {
@@ -13,41 +22,22 @@ const Test: NextPage = () => {
     isLoading,
   } = useSWR<AllCharactersType>(rmCharactersUrl, fetchRmCharacters);
 
-  const {
-    data: nextFetch,
-    size,
-    setSize,
-  } = useSWRInfinite(getKey, fetchRmCharacters);
-
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
   return (
     <>
       <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Id</th>
-            <th>Location</th>
+        <th>Name</th>
+        <th>Id</th>
+        <th>Location</th>
+        {characters?.results.map((character) => (
+          <tr key={character.id}>
+            {character.name}
+            <td>{character.id}</td>
+            <td>{character.location?.name}</td>
           </tr>
-        </thead>
-        <tbody>
-          {characters?.results.map((character) => (
-            <tr key={character.id}>
-              <th>{character.name}</th>
-              <td>{character.id}</td>
-              <td> {character.location?.name}</td>
-            </tr>
-          ))}
-        </tbody>
+        ))}
       </table>
-      <button
-        onClick={() => {
-          setSize(size + 1);
-        }}
-      >
-        Load More
-      </button>
     </>
   );
 };
