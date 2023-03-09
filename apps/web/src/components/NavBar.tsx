@@ -1,6 +1,6 @@
 import React from "react";
-import { NavbarContainer } from "../styles/NavBar.style";
+import styles from "../styles/app.module.sass";
 
 export default function Navbar() {
-  return <NavbarContainer>Navbar</NavbarContainer>;
+  return <nav className={styles.nav}>Navbar</nav>;
 }

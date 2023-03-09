@@ -1,5 +1,3 @@
-import Head from "next/head";
-import type { AppType } from "next/dist/shared/lib/utils";
 import { SessionProvider } from "next-auth/react";
 import { CacheProvider } from "@emotion/react";
 import { ErrorBoundary } from "../utils/ErrorBoundary";
@@ -7,7 +5,7 @@ import createEmotionCache from "../utils/createEmotionCache";
 import type { AppProps } from "next/app";
 import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
-import Home from ".";
+import "../styles/global.sass";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
