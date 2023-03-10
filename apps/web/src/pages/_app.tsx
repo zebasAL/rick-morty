@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
 import "../styles/global.sass";
+import Layout from "../components/Layout";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -39,13 +40,17 @@ function MyApp({
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return getLayout(
-    <CacheProvider value={emotionCache}>
-      <ErrorBoundary>
-        <SessionProvider session={session}>
-          <Component {...pageProps} />
-        </SessionProvider>
-      </ErrorBoundary>
-    </CacheProvider>
+    <div className="main-body">
+      <Layout>
+        <CacheProvider value={emotionCache}>
+          <ErrorBoundary>
+            <SessionProvider session={session}>
+              <Component {...pageProps} />
+            </SessionProvider>
+          </ErrorBoundary>
+        </CacheProvider>
+      </Layout>
+    </div>
   );
 }
 

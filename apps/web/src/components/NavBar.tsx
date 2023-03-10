@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/app.module.sass";
 
 export default function Navbar() {
-  return <nav className={styles.nav}>Navbar</nav>;
+  return (
+    <div className={styles.nav}>
+      <div className={styles.itemList}>
+        <text className={styles.options}>navItem1</text>
+        <text className={styles.options}>navItem2</text>
+        <text className={styles.options}>navItem3</text>
+      </div>
+    </div>
+  );
 }
