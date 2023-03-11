@@ -40,17 +40,15 @@ function MyApp({
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return getLayout(
-    <div className="main-body">
-      <Layout>
-        <CacheProvider value={emotionCache}>
-          <ErrorBoundary>
-            <SessionProvider session={session}>
-              <Component {...pageProps} />
-            </SessionProvider>
-          </ErrorBoundary>
-        </CacheProvider>
-      </Layout>
-    </div>
+    <Layout>
+      <CacheProvider value={emotionCache}>
+        <ErrorBoundary>
+          <SessionProvider session={session}>
+            <Component {...pageProps} />
+          </SessionProvider>
+        </ErrorBoundary>
+      </CacheProvider>
+    </Layout>
   );
 }
 

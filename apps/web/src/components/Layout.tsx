@@ -1,6 +1,9 @@
 import Head from "next/head";
 import Footer from "./Footer";
 import Navbar from "./NavBar";
+import styles from "../styles/app.module.sass";
+import { use } from "chai";
+import { useState } from "react";
 
 type LayoutProps = {
   children: React.ReactNode;

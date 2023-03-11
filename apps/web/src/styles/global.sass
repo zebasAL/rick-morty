@@ -1,15 +1,59 @@
 @use "sass:map"
 @import "./abstracts/all.module"
+
 html,
 body
     padding: 0
     margin: 0
     line-height: 1.6
     font-size: 18px
-    //background-color: map.get($rick-colors, "rick-dark")
 *
     box-sizing: border-box
 
-.main-body
-    background-color: red
-    height: 100%
+@mixin nav-content
+    display: flex
+    justify-content: space-between
+    padding: 20px
+    gap: 5%
+
+@mixin rick-mode
+    background-color: $rick-theme
+
+    .nav
+        @include nav-content
+        background-color: $morty-theme
+
+    .footer
+        @include nav-content
+        background-color: $morty-theme
+
+@mixin morty-mode
+    background-color: $morty-theme
+
+    .nav
+        @include nav-content
+        background-color: $rick-theme
+
+    .footer
+        @include nav-content
+        background-color: $rick-theme
+
+.rick-mode
+    @include rick-mode
+
+.morty-mode
+    @include morty-mode
+
+.itemList
+    display: flex
+    gap: 20px
+    justify-content: space-between
+
+.options
+    &:hover
+        cursor: pointer
+        text-decoration: underline
+
+@media (prefers-color-scheme: dark)
+    body
+        @include rick-mode
