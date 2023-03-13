@@ -1,0 +1,13 @@
+@use  "../abstracts/mixins.module"
+@use "../abstracts/breakpoints.module"
+
+$sm: $breakpoint-small
+$md: $breakpoint-medium
+$lg: $breakpoint-large
+$xl: $breakpoint-extra-large
+
+button
+  font-weight: 700
+  line-height: calc(24 / 14)
+  @include fontSize(14)
+  text-transform: capitalize

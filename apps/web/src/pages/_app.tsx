@@ -1,12 +1,13 @@
+import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import { CacheProvider } from "@emotion/react";
-import { ErrorBoundary } from "../utils/ErrorBoundary";
-import createEmotionCache from "../utils/createEmotionCache";
-import type { AppProps } from "next/app";
 import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
-import "../styles/global.sass";
+import { ThemeContextProvider } from "../ThemeContext";
+import { ErrorBoundary } from "../ErrorBoundary";
+import createEmotionCache from "../utils/createEmotionCache";
 import Layout from "../components/Layout";
+import "../styles/global.sass";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -43,9 +44,11 @@ function MyApp({
     <Layout>
       <CacheProvider value={emotionCache}>
         <ErrorBoundary>
-          <SessionProvider session={session}>
-            <Component {...pageProps} />
-          </SessionProvider>
+          <ThemeContextProvider>
+            <SessionProvider session={session}>
+              <Component {...pageProps} />
+            </SessionProvider>
+          </ThemeContextProvider>
         </ErrorBoundary>
       </CacheProvider>
     </Layout>

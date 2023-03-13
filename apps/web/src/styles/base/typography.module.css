@@ -1,0 +1,170 @@
+h1 {
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 2;
+  font-size: pxToRem(40)rem;
+}
+@media (min-width: 500px) {
+  h1 {
+    font-size: pxToRem(52)rem;
+  }
+}
+@media (min-width: 768px) {
+  h1 {
+    font-size: pxToRem(58)rem;
+  }
+}
+@media (min-width: 1024px) {
+  h1 {
+    font-size: pxToRem(64)rem;
+  }
+}
+
+h2 {
+  font-weight: 700;
+  line-height: 1.3333333333;
+  font-size: pxToRem(32)rem;
+}
+@media (min-width: 500px) {
+  h2 {
+    font-size: pxToRem(40)rem;
+  }
+}
+@media (min-width: 768px) {
+  h2 {
+    font-size: pxToRem(44)rem;
+  }
+}
+@media (min-width: 1024px) {
+  h2 {
+    font-size: pxToRem(48)rem;
+  }
+}
+
+h3 {
+  font-weight: 700;
+  line-height: 1.5;
+  font-size: pxToRem(24)rem;
+}
+@media (min-width: 500px) {
+  h3 {
+    font-size: pxToRem(26)rem;
+  }
+}
+@media (min-width: 768px) {
+  h3 {
+    font-size: pxToRem(30)rem;
+  }
+}
+@media (min-width: 1024px) {
+  h3 {
+    font-size: pxToRem(32)rem;
+  }
+}
+
+h4 {
+  font-weight: 700;
+  line-height: 1.5;
+  font-size: pxToRem(20)rem;
+}
+@media (min-width: 500px) {
+  h4 {
+    font-size: pxToRem(20)rem;
+  }
+}
+@media (min-width: 768px) {
+  h4 {
+    font-size: pxToRem(24)rem;
+  }
+}
+@media (min-width: 1024px) {
+  h4 {
+    font-size: pxToRem(24)rem;
+  }
+}
+
+h5 {
+  font-weight: 700;
+  line-height: 1.5;
+  font-size: pxToRem(18)rem;
+}
+@media (min-width: 500px) {
+  h5 {
+    font-size: pxToRem(19)rem;
+  }
+}
+@media (min-width: 768px) {
+  h5 {
+    font-size: pxToRem(20)rem;
+  }
+}
+@media (min-width: 1024px) {
+  h5 {
+    font-size: pxToRem(20)rem;
+  }
+}
+
+h6 {
+  font-weight: 700;
+  line-height: 1.5555555556;
+  font-size: pxToRem(17)rem;
+}
+@media (min-width: 500px) {
+  h6 {
+    font-size: pxToRem(18)rem;
+  }
+}
+@media (min-width: 768px) {
+  h6 {
+    font-size: pxToRem(18)rem;
+  }
+}
+@media (min-width: 1024px) {
+  h6 {
+    font-size: pxToRem(18)rem;
+  }
+}
+
+p, p[data-variant=body1] {
+  line-height: 1.5;
+  font-size: pxToRem(16)rem;
+}
+
+p[data-variant=body2] {
+  line-height: 1.5714285714;
+  font-size: pxToRem(14)rem;
+}
+
+p[data-variant=subtitle1] {
+  font-weight: 600;
+  line-height: 1.5;
+  font-size: pxToRem(16)rem;
+}
+
+p[data-variant=subtitle2] {
+  font-weight: 600;
+  line-height: 1.5714285714;
+  font-size: pxToRem(14)rem;
+}
+
+p[data-variant=body1] {
+  line-height: 1.5;
+  font-size: pxToRem(16)rem;
+}
+
+p[data-variant=body1] {
+  line-height: 1.5;
+  font-size: pxToRem(16)rem;
+}
+
+p[data-variant=caption] {
+  line-height: 1.5;
+  font-size: pxToRem(12)rem;
+}
+
+p[data-variant=overline] {
+  font-weight: 700;
+  line-height: 1.5;
+  text-transform: uppercase;
+  font-size: pxToRem(12)rem;
+}/*# sourceMappingURL=typography.module.css.map */

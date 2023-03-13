@@ -17,6 +17,7 @@ export default function Layout({ children, title, description }: LayoutProps) {
       <Head>
         <title>{title}</title>
         <meta name="Description" content={description} />
+        <meta name="color-scheme" content="dark light" />
       </Head>
       <Navbar />
       <main>{children}</main>
