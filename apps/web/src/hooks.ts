@@ -1,4 +1,3 @@
-import { AllCharactersType, CharacterType } from "./lib/rick-morty/schemas";
 import { api } from "./utils/api";
 
 export const rmCharactersUrl = api.public.characters;

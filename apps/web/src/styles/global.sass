@@ -14,23 +14,6 @@ body
 *
     box-sizing: border-box
 
-@mixin nav-content
-    display: flex
-    justify-content: space-between
-    padding: 20px
-    gap: 5%
-
-.itemList
-    display: flex
-    gap: 20px
-    justify-content: space-between
-
-.options
-    &:hover
-        cursor: pointer
-        text-decoration: underline
-
-
 /* set theme styles for every theme variant */
 // [data-theme]
 //     @include morty-mode
@@ -38,18 +21,16 @@ body
 // [data-theme="dark"]
 //     @include morty-mode
 
-
 // [data-theme="light"]
 //     @include morty-mode
 
-
 /* if user switches the system settings to dark mode */
 /* this media query will be applied */
-@media (prefers-color-scheme: light) 
+@media (prefers-color-scheme: light)
     [data-theme*=dark]
         // @include rick-mode
 
-@media (prefers-color-scheme: dark) 
+@media (prefers-color-scheme: dark)
     [data-theme*=dark]
         // @include rick-mode
 
@@ -67,4 +48,3 @@ body
 //     [data-light-theme]
 //     :root
 //         @include morty-mode
-

@@ -227,6 +227,7 @@ button {
 }
 
 [data-theme=morty] {
+  --color-header-tp: black;
   --color-bg-default: $color-orange-defaul;
 }
 
