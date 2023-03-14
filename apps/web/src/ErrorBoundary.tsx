@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import Image from 'next/image'
+import Image from "next/image";
 import * as Sentry from "@sentry/nextjs";
 
 interface Props {
@@ -18,14 +18,14 @@ export class ErrorBoundary extends React.Component<Props, State> {
 
   static getDerivedStateFromError(error: Error) {
     // Update state so the next render will show the fallback UI.
-    return { hasError: true };  
+    return { hasError: true };
   }
 
   componentDidCatch(error: Error, errorInfo: any) {
     // we can log error or errorInfo to Sentry here.
-    // errorInfo will contain the details 
+    // errorInfo will contain the details
     // and stack trace which is better for debugging
-  
+
     // log the error to an error reporting service
     Sentry.captureException(errorInfo);
   }
@@ -37,14 +37,22 @@ export class ErrorBoundary extends React.Component<Props, State> {
         <div style={{ textAlign: "center", margin: "20px 10px" }}>
           <Image
             style={{ maxHeight: "200px", width: "100%", objectFit: "contain" }}
-            alt="error" src="https://metiormedia.s3.us-east-1.amazonaws.com/assets/errorImage.png"
+            alt="error"
+            src="https://metiormedia.s3.us-east-1.amazonaws.com/assets/errorImage.png"
           />
           <h2>Woops!, An Error Occurred</h2>
-          <p> The application detected an error, and it&quots been reported to the application development team. You can try refreshing the page.</p>
-          <p>If the error keeps occurring, please file a bug report with the following details, and include any steps to reproduce the issue.</p>    
+          <p>
+            {" "}
+            The application detected an error, and it&quots been reported to the
+            application development team. You can try refreshing the page.
+          </p>
+          <p>
+            If the error keeps occurring, please file a bug report with the
+            following details, and include any steps to reproduce the issue.
+          </p>
         </div>
       );
-    };
-    return this.props.children; 
+    }
+    return this.props.children;
   }
 }
