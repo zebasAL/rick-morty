@@ -1,19 +1,35 @@
-// import { Button } from "ui";
+import { useState, useContext } from "react";
+import { ThemeContext } from "../ThemeContext"
 
-const Web = () => {
+export default function Home() {
+  const { theme, toggleThemeHandler } = useContext(ThemeContext);
+  const [value, setValue] = useState<string>('')
+  console.log('theme', theme)
+
   return (
-    <div>
-      <h1>Web</h1>
-      <button
-        type="button"
-        onClick={() => {
-          throw new Error("Sentry Frontend Error");
-        }}
-      >
-        Throw error
-      </button>
-    </div>
-  );
-};
+    <>
+      <h1>Hello home</h1>
 
-export default Web;
+      <input value={value} onChange={(e) => setValue(e.target.value)} />
+
+      <div style={{ border: 'red 1px solid', width: '500px', height: '300px', margin: 'auto' }}>
+        <h3>Set Theme</h3>
+        <div>
+          <button onClick={() => toggleThemeHandler('light')}>
+            Light theme
+          </button>
+          <button onClick={() => toggleThemeHandler('morty')}>
+            Morty theme
+          </button>
+          <button onClick={() => toggleThemeHandler('rick')}>
+            Rick theme
+          </button>
+          <button onClick={() => toggleThemeHandler('dark')}>
+            Dark theme
+          </button>
+        </div>
+      </div>
+      <p>Texto</p>
+    </>
+  );
+}
