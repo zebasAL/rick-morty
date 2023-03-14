@@ -7,7 +7,32 @@ const { withSentryConfig } = require('@sentry/nextjs');
 
 const moduleExports = {
   // Your existing module.exports
+  webpack: (config, { isServer }) => {
+    // Use the TypeScript loader for .ts files
+    config.module.rules.push({
+      test: /\.tsx?$/,
+      //loader: 'ts-loader',
+      loader: 'babel-loader',
+      options: {
+        //transpileOnly: true,
+        presets: ["next/babel"],
+      },
+    });
 
+    // For server-side rendering of TypeScript files
+    if (isServer) {
+      const originalEntry = config.entry;
+      config.entry = async () => {
+        const entries = await originalEntry();
+        if (entries['main.js'] && !entries['main.js'].includes('./src/server.ts')) {
+          entries['main.js'].unshift('./src/server.ts');
+        }
+        return entries;
+      };
+    }
+
+    return config;
+  },
   sentry: {
     // Use `hidden-source-map` rather than `source-map` as the Webpack `devtool`
     // for client-side builds. (This will be the default starting in
@@ -16,7 +41,11 @@ const moduleExports = {
     // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#use-hidden-source-map
     // for more information.
     hideSourceMaps: true,
+    autoInstrumentServerFunctions: false
   },
+  // sassOptions: {
+  //   includePaths: [path.join(__dirname, 'styles')],
+  // },
 };
 
 const sentryWebpackPluginOptions = {

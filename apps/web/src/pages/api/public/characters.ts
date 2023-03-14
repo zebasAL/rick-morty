@@ -7,17 +7,13 @@ async function characters(_req: NextApiRequest, res: NextApiResponse) {
       case "GET":
         const body = await rmSDK.getAllCharacters();
         res.status(200).json(body);
-        break;
+        console.log("this body", body);
 
-      case "POST":
-        // const { code, body } = await postSamples()
-        // res.status(code).json(body);
-
-        res.status(200).json("OK");
         break;
 
       default:
-        res.status(404).json({ error: "This endpoint is not coded yet" });
+        res.setHeader("Allow", ["GET"]);
+        res.status(405).end(`Method ${_req.method} Not Allowed`);
         break;
     }
   } catch (error) {
