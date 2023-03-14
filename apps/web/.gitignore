@@ -7,3 +7,5 @@
 .env
 
 .vercel
+
+*.css
