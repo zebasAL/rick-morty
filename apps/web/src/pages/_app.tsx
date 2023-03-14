@@ -6,8 +6,8 @@ import { NextPage } from "next";
 import { ThemeContextProvider } from "../ThemeContext";
 import { ErrorBoundary } from "../ErrorBoundary";
 import createEmotionCache from "../utils/createEmotionCache";
-import Layout from "../components/Layout";
 import "../styles/global.sass";
+import Layout from "../components/Layout";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
