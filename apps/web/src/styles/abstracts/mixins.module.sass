@@ -1,0 +1,38 @@
+@use "./functions.module"
+
+@mixin fontSize($value)
+  font-size: pxToRem($value) + rem
+
+@mixin media($queries...)
+  @each $breakpoint, $value in $queries
+    @media (min-width: #{$breakpoint})
+      @include fontSize($value)
+
+@mixin hover
+  &:not([disabled]):hover
+    border-width: 2px
+    @content
+
+@mixin min-width($breakpoint)
+  @if ($breakpoint == xsmall)
+    @media (min-width: $breakpoint-xsmall)
+      @content
+
+  @else if ($breakpoint == small)
+    @media (min-width: $breakpoint-small)
+      @content
+
+  @else if ($breakpoint == medium)
+    @media (min-width: $breakpoint-medium)
+      @content
+    
+  @else if ($breakpoint == large)
+    @media (min-width: $breakpoint-large)
+      @content
+    
+  @else if ($breakpoint == xlarge)
+    @media (min-width: $breakpoint-extra-large)
+      @content
+    
+  @else
+    @error "UNKNOWN MEDIA BREAKPOINT #{$breakpoint}"
