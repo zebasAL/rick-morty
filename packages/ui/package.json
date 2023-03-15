@@ -6,7 +6,7 @@
   "module": "./index.mjs",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint *.ts*"
+    "lint": "eslint \"**/*.ts*\""
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
