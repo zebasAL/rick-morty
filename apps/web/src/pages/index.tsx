@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
-import { Button } from "ui";
+import { printHelloWorld } from "ui";
+import Button from "ui/Button";
 import { ThemeContext } from "../ThemeContext";
 
 export default function Home() {
@@ -33,7 +34,6 @@ export default function Home() {
           <button onClick={() => toggleThemeHandler("dark")}>Dark theme</button>
         </div>
       </div>
-      <Button />
       <p>Texto</p>
     </>
   );
