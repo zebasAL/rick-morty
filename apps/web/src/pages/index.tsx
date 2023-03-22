@@ -1,6 +1,4 @@
 import { useState, useContext } from "react";
-import { printHelloWorld } from "ui";
-import Button from "ui/Button";
 import { ThemeContext } from "../ThemeContext";
 
 export default function Home() {
