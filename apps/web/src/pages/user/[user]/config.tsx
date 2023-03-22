@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 
-export const User = () => {
+export const UserConfig = () => {
   const router = useRouter()
   const { user } = router.query
 
@@ -11,3 +11,5 @@ export const User = () => {
     </h3>
   )
 }
+
+export default UserConfig
