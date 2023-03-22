@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm freePorts && next dev --port 3000",
+    "dev": "pnpm freePorts && pnpm prisma:studio && next dev --port 3000 ",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,9 +11,11 @@
     "test:watch": "jest --watchAll",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "freePorts": "kill-port 3000",
+    "freePorts": "kill-port 3000 && kill-port 5555",
     "vercel:env:pull": "vercel env pull",
-    "vercel:link": "vercel link"
+    "vercel:link": "vercel link",
+    "postinstall": "pnpm prisma generate",
+    "prisma:studio": "start cmd.exe /k \"pnpm prisma studio\""
   },
   "dependencies": {
     "@emotion/cache": "^11.10.3",
@@ -29,8 +31,10 @@
     "install": "^0.13.0",
     "jest": "^29.2.0",
     "jest-environment-jsdom": "^29.2.0",
+    "mysql-client": "^0.3.0",
     "next": "12.3.1",
     "next-auth": "^4.14.0",
+    "prisma-zod-generator": "^0.8.11",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-error-boundary": "^3.1.4",
@@ -52,8 +56,10 @@
     "eslint": "7.32.0",
     "eslint-config-custom": "workspace:*",
     "kill-port": "^2.0.1",
-    "sass": "^1.58.3",
+    "next-transpile-modules": "9.0.0",
     "prisma": "^4.11.0",
+    "prisma-dbml-generator": "^0.10.0",
+    "sass": "^1.58.3",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.3",
     "vercel": "^28.4.11"

@@ -11,3 +11,5 @@ export const User = () => {
     </h3>
   )
 }
+
+export default User
