@@ -1,0 +1,51 @@
+@use "sass:map"
+@use "./layout/_index"
+@import "./abstracts/_index"
+@import "./base/_index"
+@import "./themes/_index"
+
+html,
+body
+    background-color: var(--color-bg-default)
+    font-family: #{$font-primary}
+    padding: 0
+    margin: 0
+    line-height: 1.6
+    font-size: 18px
+*
+    box-sizing: border-box
+
+/* set theme styles for every theme variant */
+// [data-theme]
+//     @include morty-mode
+
+// [data-theme="dark"]
+//     @include morty-mode
+
+// [data-theme="light"]
+//     @include morty-mode
+
+/* if user switches the system settings to dark mode */
+/* this media query will be applied */
+@media (prefers-color-scheme: light)
+    [data-theme*=dark]
+        // @include rick-mode
+
+@media (prefers-color-scheme: dark)
+    [data-theme*=dark]
+        // @include rick-mode
+
+// @media (prefers-color-scheme: dark) 
+//     [data-theme=dark]
+//     :root
+//         @include rick-mode
+
+// @media (prefers-color-scheme: light)
+//     [data-theme=]
+//     :root
+//         @include morty-mode
+
+// @media (prefers-color-scheme: light)
+//     [data-light-theme]
+//     :root
+//         @include morty-mode
