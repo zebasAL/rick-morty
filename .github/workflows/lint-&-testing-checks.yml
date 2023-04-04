@@ -67,6 +67,9 @@ jobs:
           
       - name: Install dependencies
         run: pnpm install 
+
+      - name: Run unit ESLINT
+        run: pnpm lint
         
       - name: Run unit tests
         run: pnpm test

@@ -1,5 +1,5 @@
 import React, { forwardRef, useContext } from "react";
-import ThemeContext from "ThemeContext";
+import ThemeContext from "@/ThemeContext";
 
 interface ThemeModalProps {
   isModalOpen: boolean;
