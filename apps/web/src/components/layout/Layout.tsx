@@ -1,9 +1,6 @@
 import Head from "next/head";
-import Footer from "./Footer";
-import Navbar from "./NavBar";
-import styles from "../styles/app.module.sass";
-import { use } from "chai";
-import { useState } from "react";
+import Footer from "@navigation/Footer";
+import Navbar from "@navigation/NavBar";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -13,7 +10,7 @@ type LayoutProps = {
 
 export default function Layout({ children, title, description }: LayoutProps) {
   return (
-    <>
+    <div className="layout-wrap">
       <Head>
         <title>{title}</title>
         <meta name="Description" content={description} />
@@ -22,7 +19,7 @@ export default function Layout({ children, title, description }: LayoutProps) {
       <Navbar />
       <main>{children}</main>
       <Footer />
-    </>
+    </div>
   );
 }
 

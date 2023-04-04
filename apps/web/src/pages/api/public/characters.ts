@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { rmSDK } from "../../../lib/rick-morty/sdk";
+import { rmSDK } from "lib/rick-morty/sdk";
 
 async function characters(_req: NextApiRequest, res: NextApiResponse) {
   try {
@@ -7,7 +7,6 @@ async function characters(_req: NextApiRequest, res: NextApiResponse) {
       case "GET":
         const body = await rmSDK.getAllCharacters();
         res.status(200).json(body);
-        console.log("this body", body);
 
         break;
 

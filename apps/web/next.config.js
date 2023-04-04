@@ -11,10 +11,9 @@ const moduleExports = {
     // Use the TypeScript loader for .ts files
     config.module.rules.push({
       test: /\.tsx?$/,
-      //loader: 'ts-loader',
       loader: 'babel-loader',
+      //transpilePackages: ["@/*"],
       options: {
-        //transpileOnly: true,
         presets: ["next/babel"],
       },
     });

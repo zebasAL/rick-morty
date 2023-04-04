@@ -1,9 +1,8 @@
-import type { NextPage } from "next";
-import { fetchRmCharacters, rmCharactersUrl } from "../hooks/hooks";
 import useSWR from "swr";
 import { AllCharactersType } from "../lib/rick-morty/schemas";
+import { fetchRmCharacters, rmCharactersUrl } from "../hooks/hooks";
 
-const Test: NextPage = () => {
+export default function AllCharacters() {
   const {
     data: characters,
     error,
@@ -12,17 +11,14 @@ const Test: NextPage = () => {
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
+
   return (
-    <>
+    <div className="data-wrap">
       {characters?.results.map((character) => (
-        <div key={character.id}>
+        <div key={character.id} className="data-items">
           {character.name}
-          {" - " + character.id}
-          <div>{character.location?.name}</div>
         </div>
       ))}
-    </>
+    </div>
   );
-};
-
-export default Test;
+}
