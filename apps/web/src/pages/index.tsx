@@ -1,3 +1,5 @@
+import { CharacterType } from "@/lib/rick-morty/schemas";
+
 function Home(props) {
   const { characters } = props;
   return (
@@ -9,7 +11,7 @@ function Home(props) {
       <div className="home-subtitle">
         <h4 style={{ marginTop: 0 }}>Some of the characters in the show</h4>
         <div className="data-wrap">
-          {characters?.map((character) => (
+          {characters?.map((character: CharacterType) => (
             <div key={character.id} className="data-items">
               {character.name}
             </div>
