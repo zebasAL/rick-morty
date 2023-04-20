@@ -21,12 +21,18 @@ export default function Navbar() {
 
   return (
     <div className="navbar">
-      <div className="item-list">
-        <text className="options">navItem1</text>
-        <text className="options">navItem2</text>
-        <text className="options">navItem3</text>
-      </div>
-      <div className="theme-btn" ref={modalTogglerRef}>
+      <ul className="item-list">
+        <li tabIndex={0} className="options">
+          navItem1
+        </li>
+        <li tabIndex={0} className="options">
+          navItem2
+        </li>
+        <li tabIndex={0} className="options">
+          navItem3
+        </li>
+      </ul>
+      <div tabIndex={0} className="theme-btn" ref={modalTogglerRef}>
         <Image src={rickMortyImg} alt="" onClick={() => toggleModal()} />
       </div>
       <ThemeModal
