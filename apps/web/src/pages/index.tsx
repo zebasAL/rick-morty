@@ -1,4 +1,6 @@
 import CountdownTimer from "@/components/countdown/CountdownTimer";
+import { rmCharactersUrl } from "@/hooks/hooks";
+import useLocalStorage from "@/hooks/useLocalStorage";
 import { AllCharactersType, CharacterType } from "@/lib/rick-morty/schemas";
 import { useState, useEffect } from "react";
 interface HomeProps {
@@ -8,32 +10,24 @@ interface HomeProps {
 function Home(props: HomeProps) {
   const { characters } = props;
   const [randomNumber, setRandomNumber] = useState<number>(0);
-  const [dyingCharacter, setDyingCharacter] = useState("");
+  const [storedCharacter, setStoredCharacter] = useState<string>("");
 
-  const [targetDate, setTargetDate] = useState(0);
-
-  useEffect(() => {
-    const storedTargetDate = localStorage.getItem("targetDate");
-    const storedDyingCharacter = localStorage.getItem("dyingCharacter");
-    if (storedTargetDate) {
-      setTargetDate(Number(storedTargetDate));
-    }
-    if (storedDyingCharacter) {
-      setDyingCharacter(storedDyingCharacter);
-    }
-  }, []);
+  const [targetDate, setTargetDate] = useLocalStorage("targetDate", null);
+  const [dyingCharacter, setDyingCharacter] = useLocalStorage(
+    "dyingCharacter",
+    null
+  );
 
   useEffect(() => {
     const randomNum = Math.floor(Math.random() * 19);
     setRandomNumber(randomNum);
-  }, [targetDate]);
+    setStoredCharacter(dyingCharacter);
+  }, [dyingCharacter]);
 
   const handleCountdownFinished = () => {
-    const newTargetDate = new Date().getTime() + 2 * 24 * 60 * 60 * 1000;
-    localStorage.setItem("targetDate", newTargetDate.toString());
+    const newTargetDate = new Date().getTime() + 5 * 24 * 60 * 60 * 1000;
     setTargetDate(newTargetDate);
     const newDyingCharacter = characters.results[randomNumber].name;
-    localStorage.setItem("dyingCharacter", newDyingCharacter);
     setDyingCharacter(newDyingCharacter);
   };
 
@@ -54,11 +48,10 @@ function Home(props: HomeProps) {
         </div>
       </div>
       <div className="countdown-title">
-        Time left for <p>{dyingCharacter}</p> to die:
+        Time left for <span>{storedCharacter}</span> to die:
       </div>
       <CountdownTimer
         targetDate={targetDate}
-        setTargetDate={setTargetDate}
         onCountdownFinished={handleCountdownFinished}
         character={dyingCharacter}
       />
@@ -73,7 +66,7 @@ function Home(props: HomeProps) {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch("https://rickandmortyapi.com/api/character");
+  const res = await fetch(rmCharactersUrl);
   const data = await res.json();
 
   // By returning { props: { characters } }, the Blog component

@@ -1,8 +1,15 @@
-import React, { useEffect } from "react";
-import { useCountdown } from "@/hooks/useCountdown";
+import React, { useEffect, useState } from "react";
+import useCountdown from "@/hooks/useCountdown";
 import DateTimeDisplay from "./DateTimeDisplay";
 
-const ShowCounter = ({ days, hours, minutes, seconds }) => {
+interface CountdownTimerProps {
+  targetDate: Date;
+  character: string;
+  onCountdownFinished: () => void;
+}
+
+const ShowCounter = (props) => {
+  const { days, hours, minutes, seconds } = props;
   return (
     <div className="show-counter">
       <DateTimeDisplay value={days} type={"Days"} isCloseToDate={days < 2} />
@@ -16,39 +23,44 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
   );
 };
 
-const CountdownTimer = (props: any) => {
-  const { targetDate, setTargetDate, character, onCountdownFinished } = props;
-  const [days, hours, minutes, seconds] = useCountdown(targetDate);
+const CountdownTimer = (props: CountdownTimerProps) => {
+  const { targetDate, character, onCountdownFinished } = props;
+  const [dyingCharacter, setDyingCharacter] = useState("");
 
-  React.useEffect(() => {
-    setTargetDate(targetDate);
-  }, [setTargetDate, targetDate]);
+  const { days, hours, minutes, seconds } = useCountdown(targetDate);
 
-  if (days + hours + minutes + seconds <= 0) {
-    return (
-      <>
-        <div className="counter-wrapper">
-          <div className="reached-days">{character} has died!</div>
+  const isCountdownFinished = days + hours + minutes + seconds <= 0;
+
+  useEffect(() => {
+    setDyingCharacter(character);
+  }, [character]);
+
+  // if (typeof window === undefined)
+  //   return (
+  //     <div className="counter-wrapper">
+  //       <div className="reached-days">loading...</div>
+  //     </div>
+  //   );
+
+  return (
+    <div className="counter-wrapper">
+      {isCountdownFinished ? (
+        <>
+          <div className="reached-days">{dyingCharacter} has died!</div>
           <button style={{ margin: "0 .5rem" }} onClick={onCountdownFinished}>
             click to reset
           </button>
-        </div>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <div className="counter-wrapper">
-          <ShowCounter
-            days={days}
-            hours={hours}
-            minutes={minutes}
-            seconds={seconds}
-          />
-        </div>
-      </>
-    );
-  }
+        </>
+      ) : (
+        <ShowCounter
+          days={days}
+          hours={hours}
+          minutes={minutes}
+          seconds={seconds}
+        />
+      )}
+    </div>
+  );
 };
 
 export default CountdownTimer;
