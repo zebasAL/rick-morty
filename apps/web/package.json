@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm freePorts && pnpm prisma:studio && next dev --port 3000 ",
+    "dev": "pnpm freePorts && pnpm prisma:studio && pnpm run:planetscale:db && pnpm run open && next dev --port 3000",
+    "run:planetscale:db": "start cmd.exe -NoExit -Command \"pscale connect rick-morty dev --port 3309\"",
+    "prisma:update": "npx prisma migrate dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -11,11 +13,13 @@
     "test:watch": "jest --watchAll",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
+    "open": "start http://localhost:3000",
     "freePorts": "kill-port 3000 && kill-port 5555",
     "vercel:env:pull": "vercel env pull",
     "vercel:link": "vercel link",
     "prisma:studio": "start cmd.exe /k \"pnpm prisma studio\"",
-    "postinstall": "pnpm prisma generate"
+    "postinstall": "pnpm prisma generate",
+    "prisma:push:db": "npx prisma db push"
   },
   "dependencies": {
     "@emotion/cache": "^11.10.3",
