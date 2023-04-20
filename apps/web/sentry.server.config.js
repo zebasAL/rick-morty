@@ -4,6 +4,7 @@
 
 import * as Sentry from '@sentry/nextjs';
 
+// eslint-disable-next-line turbo/no-undeclared-env-vars
 const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
 
 Sentry.init({

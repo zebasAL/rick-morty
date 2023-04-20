@@ -2,8 +2,8 @@
 
 export const api = {
   public: {
-    characters: `/api/public/characters`,
-    locations: `/api/public/locations`,
-    episodes: `/api/public/episodes`,
+    characters: `http://localhost:3000/api/public/characters`,
+    locations: `http://localhost:3000/api/public/locations`,
+    episodes: `http://localhost:3000/api/public/episodes`,
   },
 };
