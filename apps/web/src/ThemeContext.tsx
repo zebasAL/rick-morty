@@ -15,7 +15,7 @@ const isBrowser = typeof document !== "undefined";
 const isLocalStorageEmpty = (): boolean => !localStorage.getItem("data-theme");
 
 const initialThemeHandler = (): Themes => {
-  if (!isBrowser) return "light";
+  if (!isBrowser) return 'light'
   if (isLocalStorageEmpty()) {
     const systemTheme = window.matchMedia("prefers-color-scheme: dark")?.media
       ? "dark"

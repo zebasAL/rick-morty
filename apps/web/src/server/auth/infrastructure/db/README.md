@@ -1,0 +1,5 @@
+## DB
+
+- `Description:` This folder contains code that interacts with the database or other data stores, such as Redis or Elasticsearch. The main purpose of this folder is to provide a layer of abstraction between the domain logic and the data storage, so that changes to the data storage don't affect the domain logic. The repository pattern is often used to achieve this separation of concerns.
+
+- `Descripción:` Esta carpeta contiene todos los archivos y configuraciones relacionados con la base de datos de la aplicación, incluyendo scripts de migración de base de datos, archivos de configuración y cualquier otro archivo relacionado con la interacción con la base de datos. El objetivo principal de esta carpeta es aislar y separar todas las preocupaciones relacionadas con la base de datos de la lógica de negocio de la aplicación.
