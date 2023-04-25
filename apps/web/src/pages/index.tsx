@@ -1,16 +1,35 @@
+import Button from "@/../../../packages/ui/Button";
 import CountdownTimer from "@/components/countdown/CountdownTimer";
+import { rmCharactersUrl } from "@/hooks/hooks";
 import { AllCharactersType, CharacterType } from "@/lib/rick-morty/schemas";
 import { useState, useEffect } from "react";
+
 interface HomeProps {
-  characters: AllCharactersType;
+  initialCharacters: AllCharactersType;
 }
 
 function Home(props: HomeProps) {
-  const { characters } = props;
+  const { initialCharacters } = props;
+  const [characters, setCharacters] =
+    useState<AllCharactersType>(initialCharacters);
+
   const [randomNumber, setRandomNumber] = useState<number>(0);
   const [dyingCharacter, setDyingCharacter] = useState("");
 
   const [targetDate, setTargetDate] = useState(0);
+
+  const fetchMore = () => {
+    fetch("https://rickandmortyapi.com/api/character/?page=2")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setCharacters((prevCharacters) => ({
+          ...prevCharacters,
+          results: [...prevCharacters.results, ...data.results],
+        }));
+      });
+  };
 
   useEffect(() => {
     const storedTargetDate = localStorage.getItem("targetDate");
@@ -52,6 +71,7 @@ function Home(props: HomeProps) {
             </div>
           ))}
         </div>
+        <Button onClick={() => fetchMore()}>Fetch more</Button>
       </div>
       <div className="countdown-title">
         Time left for <p>{dyingCharacter}</p> to die:
@@ -73,14 +93,14 @@ function Home(props: HomeProps) {
 export async function getStaticProps() {
   // Call an external API endpoint to get posts.
   // You can use any data fetching library
-  const res = await fetch("https://rickandmortyapi.com/api/character");
+  const res = await fetch(rmCharactersUrl);
   const data = await res.json();
 
   // By returning { props: { characters } }, the Blog component
   // will receive `characters` as a prop at build time
   return {
     props: {
-      characters: data,
+      initialCharacters: data,
     },
   };
 }
